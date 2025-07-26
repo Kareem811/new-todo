@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
+import { TodoProvider } from "./context/TodoContext";
+import ThemeToggle from "./components/ThemeToggle";
+import Todos from "./pages/Todos";
+import About from "./pages/About";
+import "./App.css";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <TodoProvider>
+        <div className="app">
+          <ThemeToggle />
+          <Routes>
+            <Route path="/todos" element={<Todos />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </TodoProvider>
+    </ThemeProvider>
   );
 }
 
